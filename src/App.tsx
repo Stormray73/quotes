@@ -1,34 +1,71 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState, useEffect } from 'react'
+import { SearchResults } from './components/searchResults'
+import { RandomQuote } from './components/randomQuote'
+import { Quote } from './components/Quote'
+import './index.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+export const App = () => {
+  const[searchText, setSearchText] = useState("");
+  const[motdVisible, setMotdVisible] = useState(true);
+  const[quote, setQuote] = useState<Quote>();
+  const[isEnterPressed, setIsEnterPressed] = useState(false);
+  const [quotes, setQuotes] = useState<Quote[]>([]);
+  const [resultCount, setResultCount] = useState(0);
+
+  useEffect( () => {
+    fetch("https://api.quotable.io/random")
+    .then(res => res.json())
+    .then(json => setQuote(json))
+}, [])
+
+  useEffect( () => {
+    if(isEnterPressed){
+      fetch(`https://usu-quotes-mimic.vercel.app/api/search?query=${searchText}`)
+        .then(res => res.json())
+        .then(json => {
+            setQuotes(json.results)
+            setResultCount(json.count)
+        })
+      setIsEnterPressed(false);
+    }
+  })
+
+  function Content(){
+    if (motdVisible){
+      return (
+        <div>
+          <RandomQuote author={quote?.author!} content={quote?.content!}/>
+        </div>
+      )
+    }
+    else{
+      return (
+        <div>
+            <SearchResults quotes={quotes!} count={resultCount}/>
+        </div>)
+    }
+  }
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className='blue stuff-box'>
+        <h1>Search By Author</h1>
+        <div className='padded'>
+          <input 
+          className="search" 
+          placeholder="Author Name" 
+          onChange={e => setSearchText(e.target.value)} 
+          onKeyDown={e => {
+            if(e.key === "Enter"){
+              setMotdVisible(false)
+              setIsEnterPressed(true)
+            }
+          }}></input>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Content/>
     </div>
   )
 }
 
-export default App
+

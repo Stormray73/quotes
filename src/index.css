@@ -15,56 +15,82 @@
   -webkit-text-size-adjust: 100%;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+.padded{
+  padding: 16px;
 }
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+.search{
+  border-radius: 15px;
+  height: 30px;
+  width: 200px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.shadowed {
+	text-shadow: 1px 1px 2px black;
+	color:       white;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.stuff-box {
+	font-family: 'helvetica neue', helvetica, sans-serif;
+	color: white;
+	letter-spacing: 1px;
+	text-align: center;
+	padding: 3px 10px;
+	margin: 10px;
+	cursor: pointer;
+	border-radius: 10px;
+	border-width: 2px;
+	border-style: solid;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.timestamp {
+    font-size: smaller;
+    font-family: monospace;
+    padding: 0px 10px;
 }
+
+.red {
+	border-color: rgb(255,0,0);
+	background:   rgb(180,60,60);
+	box-shadow: 1px 1px 2px rgba(200,0,0,0.4);
+}
+
+.yellow {
+	border-color: rgb(255,255,0);
+	background:   rgb(180,180,60);
+	box-shadow: 1px 1px 2px rgba(200,200,0,0.4);
+}
+
+.blue {
+	border-color: rgb(0,0,255);
+	background:   rgb(60,60,180);
+	box-shadow: 1px 1px 2px rgba(0,0,200,0.4);
+}
+
+.green {
+	border-color: rgb(0,255,0);
+	background:   rgb(60,180,60);
+	box-shadow: 1px 1px 2px rgba(0,200,0,0.4);
+}
+
+.black {
+    border-color: rgb(0,0,0);
+    background:   rgb(75,75,75);
+    box-shadow: 1px 1px 2px rgba(200,200,0,0.4);
+}
+
+.purple {
+  border-color:black;
+  background: rgba(162, 0, 255, 0.432);
+  box-shadow: 1px 1px 2px rgba(102, 0, 204, 0.4);
+}
+
+.light-blue{
+  border-color: rgb(51, 102, 255);
+  background: rgba(102, 204, 255, 0.808);
+  box-shadow: rgba(0, 0, 255, 0.507);
+}
+
