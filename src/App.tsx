@@ -11,6 +11,7 @@ export const App = () => {
   const[isEnterPressed, setIsEnterPressed] = useState(false);
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [resultCount, setResultCount] = useState(0);
+  const [centerSearch, setCenterSearch] = useState(true)
 
   useEffect( () => {
     fetch("https://api.quotable.io/random")
@@ -27,6 +28,7 @@ export const App = () => {
             setResultCount(json.count)
         })
       setIsEnterPressed(false);
+      setCenterSearch(false)
     }
   })
 
@@ -46,9 +48,19 @@ export const App = () => {
     }
   }
 
+  function IsCentred(){
+    if(centerSearch){
+      return "center blue stuff-box"
+    }
+    else{
+      return "blue stuff-box"
+    }
+  
+  }
+
   return (
-    <div className="App">
-      <div className='blue stuff-box'>
+    <div>
+      <div className={IsCentred()!}>
         <h1>Search By Author</h1>
         <div className='padded'>
           <input 
